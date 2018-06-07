@@ -2,7 +2,7 @@ window.onload = pageLoad;
 
 function pageLoad() {
     console.log("js linked");
-    getQuotes();
+    //getQuotes();
 }
 
 // checks status of ajax calls
@@ -15,7 +15,7 @@ function checkStatus(response) {
 }
 
 // gets quotes from api
-function getQuotes() {
+/*function getQuotes() {
     var url = "https://cors.io/?https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1";
     fetch(url)
         .then(checkStatus)
@@ -26,4 +26,21 @@ function getQuotes() {
         .catch(function(error) {
             console.log(error);
         });
+}*/
+
+function getQuote(id) {
+    var url = "http://www.seanwrona.com/typeracer/text.php?id=" + id;
+    let data = new FormData();
+    data.append("id", id);
+    fetch(url, {method: "POST", body: data})
+        .then(checkStatus)
+        .then(JSON.parse)
+        .then(function(response) {
+            console.log(response);
+        })
+        .catch(function(error) {
+
+        });
 }
+
+
